@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Songs4Heaven_v2</string>
+    <string name="search">Recherche</string>
+    <string name="clear_search">Effacer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="liste_chants">liste_chants</string>
+    <string name="recherche_multi">recherche_multi</string>
+    <string name="generation_rapide">generation_rapide</string>
+    <string name="enchainements_tonalites">enchainements_tonalites</string>
+    <string name="liens">liens</string>
+</resources>

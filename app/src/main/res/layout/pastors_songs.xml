@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/ministry"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:text="My life's story" />
+
+    <ImageView
+        android:id="@+id/pastors_face"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:text="pastor" />
+
+    <Button
+        android:id="@+id/songs_of_pastors"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:onClick="his_songs"
+        android:text="Les chants préférés du pasteur" />
+
+</LinearLayout>

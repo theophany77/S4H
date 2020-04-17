@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".MultiSearchActivity">
+
+
+    <EditText
+        android:id="@+id/song_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Song Title" />
+
+    <EditText
+        android:id="@+id/song_words"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Song Words" />
+
+    <EditText
+        android:id="@+id/song_chord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Song Chord" />
+
+    <EditText
+        android:id="@+id/song_kind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Song Kind" />
+
+    <EditText
+        android:id="@+id/song_speed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Song Speed" />
+
+    <EditText
+        android:id="@+id/song_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Song Author" />
+
+    <EditText
+        android:id="@+id/song_misc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Song Misc" />
+
+    <CheckBox
+        android:id = "@+id/chordCheckBoxPastor"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "Chants préférés du pasteur" />
+
+    <CheckBox
+        android:id = "@+id/chordCheckBox"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "Avec accords entre {} - ex: {G}" />
+
+    <CheckBox
+        android:id = "@+id/chordCheckBoxNewSongs"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "Nouveaux chants" />
+
+    <Button
+        android:id="@+id/song_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="song_search_click"
+        android:text="C'est parti !!!" />
+
+</LinearLayout>

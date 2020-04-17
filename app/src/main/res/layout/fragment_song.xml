@@ -1,0 +1,151 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+<!--    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_title_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"/>-->
+
+    <Button
+        android:id="@+id/song_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"/>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_words_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Words"/>
+
+    <TextView
+        android:id="@+id/song_words"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Words FR"/>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_words_gb_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Words_gb"/>
+
+    <TextView
+        android:id="@+id/song_words_gb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Words GB"/>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_words_sp_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Words_sp"/>
+
+    <TextView
+        android:id="@+id/song_words_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Words SP"/>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_chords_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chords"/>
+
+    <TextView
+        android:id="@+id/song_chords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chords"/>
+
+    <Button
+        android:id="@+id/song_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Song share" />
+
+    <Button
+        android:id="@+id/song_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="song_play"
+        android:text="Song play" />
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_kind_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kind"/>
+
+    <TextView
+        android:id="@+id/song_kind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kind"/>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_speed_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Speed"/>
+
+    <TextView
+        android:id="@+id/song_speed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Speed"/>
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_author_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Author"/>
+
+    <TextView
+        android:id="@+id/song_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Author"/>
+
+
+<!--    <ImageButton
+        android:id="@+id/song_mp3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/iconfinder_mp3"/>-->
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/song_misc_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Misc"/>
+
+    <TextView
+        android:id="@+id/song_misc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Miscellaneous"/>
+
+</LinearLayout>
+
+</ScrollView>
