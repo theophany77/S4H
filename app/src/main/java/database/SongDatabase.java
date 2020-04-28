@@ -59,13 +59,15 @@ public class SongDatabase extends SQLiteOpenHelper {
             // je supprime systématiquement la db
             context.deleteDatabase(DATABASE_NAME);
 
+            Log.i("DEBUG_SongDatabase","Après deleteDatabase");
+            tableau_Etapes.sauv("SongDatabase: Après deleteDatabase");
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             // Called when the database is created for the first time.
             // This is where the creation of tables and the initial population of the tables happens.
-            Log.i("DEBUG_SongDatabase","Avant DROP TABLE");
+            Log.i("DEBUG_SongDatabase","entree onCreate ; Avant DROP TABLE");
             tableau_Etapes.sauv("SongDatabase: entree onCreate");
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_SONGS);
             db.execSQL(CREATE_TABLE_SONGS);
@@ -167,15 +169,16 @@ public class SongDatabase extends SQLiteOpenHelper {
         return cursor;
         }
 
-        private void seedData(SQLiteDatabase db) {
+        // passage de private en public ce 20200425 pour appel depuis SongLab(Context), dans le singleton.
+        public void seedData(SQLiteDatabase db) {
 
             // appel du singleton pour charger le fichier res/xml/songs4heaven.xml dans la database
-            Log.i("DEBUG_SongDatabase","Entree seedData");
+            Log.d("DEBUG_SongDatabase","Entree seedData");
             tableau_Etapes.sauv("SongDatabase: entree seedData");
             SongXmlParser parser = new SongXmlParser();
             songList = parser.parse(context);
 
-            Log.i("DEBUG_SongDatabase","seedData avec songList:"+songList.size());
+            Log.d("DEBUG_SongDatabase","seedData avec songList:"+songList.size());
 
             // insère chaque chant dans la bdd
             for (Song song : songList) {
@@ -190,7 +193,7 @@ public class SongDatabase extends SQLiteOpenHelper {
                 Log.i("DEBUG_S4HDatabase","Dans seedData avec COLUMN_AUTHOR:"+ String.valueOf(song.getmAuthor()));
 */
                 if ( song.getmTitle().contains("A Celui qui est") ||   song.getmTitle().contains("Voici le jour")) {
-                    Log.i("DEBUG_SongDatabase", "seedData avant insertion en table avec:" + ID + ":" + Integer.valueOf(song.getmId()) + TITLE + ":" + String.valueOf(song.getmTitle()));
+                    Log.d("DEBUG_SongDatabase", "seedData avant insertion en table avec:" + ID + ":" + Integer.valueOf(song.getmId()) + TITLE + ":" + String.valueOf(song.getmTitle()));
                 }
                 db.execSQL("INSERT INTO songs ("
                         + ID + ", "
@@ -250,7 +253,7 @@ public class SongDatabase extends SQLiteOpenHelper {
                     }
                 } finally {
                     if ( song.getmTitle().contains("A Celui qui est") ||   song.getmTitle().contains("Voici le jour")) {
-                        Log.i("DEBUG_SongDatabase", "seedData - fin boucle insertion avec cursor4 NULL");
+                        Log.d("DEBUG_SongDatabase", "seedData - fin boucle insertion avec cursor4 NULL");
                     }
                     cursor4.close();
                 }
@@ -278,7 +281,7 @@ public class SongDatabase extends SQLiteOpenHelper {
 
                 } while(c.moveToNext());
             }
-            //c.close();
+            c.close();
         }
 
         // JMA - 20190218

@@ -52,15 +52,18 @@ public class SongPagerActivity extends AppCompatActivity {
 
             mViewPager = (ViewPager) findViewById(R.id.song_view_pager);
 
-            Log.d("DEBUG_SongPagerAct:","onCreate:this"+this);;
+            Log.d("DEBUG_SongPagerAct:","onCreate:this"+this);
 
             // 20191228 : vide en primo et plein de relance ...
             // le get est le singleton de chargement des données xml dans la database
             mSongs = SongLab.get(this).getSongs();
+            Log.d("DEBUG_SongPagerAct:","onCreate : mSongs contient :"+mSongs.size());
+
 
             //mSongs = SongLab.
 
             FragmentManager fragmentManager = getSupportFragmentManager();
+            Log.d("DEBUG_SongPagerAct:","avant mViewPager.setAdapter ");
             mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
 
                 @Override

@@ -104,29 +104,32 @@ public class Songs4HeavenActivityFragment extends Fragment {
         return v;
     }
 
-    @Override
+    //@Override
     // pour recharger les résultats en cas de retour arrière (BNRG 3rd - p.212/213)
     //  Ne change rien au fait que la recherche muli crière ne marche plus en retour arrière, malgré la présence
     //      des valeurs saisies.
 
-    public void onResume() {
+    // 20200425 : inutile car données en R/O
+/*    public void onResume() {
+
+        Log.d("DEBUG_S4HActFrag","Entrée onResume");
 
         super.onResume();
         Cursor c1;
         c1 = LoadSongsTask();
         updateUI( c1 );
-    }
+    }*/
 
     private void updateUI(Cursor c){
         // lt set up the UI
 
         //songs=SingleLoadXml.getSongs(getContext());
-
+        Log.d("DEBUG_S4HActFrag","Entrée updateUI");
 
 
         Log.d("DEBUG_S4HActFrag", "Après SongLab.get");
         ArrayList<Song> songs = getSongs(c);
-        // J'ai désormais dans "songs" un objet ArrayList<Song> de taille 7 qui contient bien tous les chants (vérifié par checkData)
+        // J'ai désormais dans "songs" un objet ArrayList<Song> qui contient bien tous les chants (vérifié par checkData)
 
         Log.d("DEBUG_S4HActFrag", "Après songLab.getSongs");
 
@@ -176,7 +179,7 @@ public class Songs4HeavenActivityFragment extends Fragment {
 
         public SongHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_song, parent, false));
-            Log.d("DEBUG_S4HActFrag","Entree SongHolder(LayoutInflater");
+            Log.d("DEBUG_S4HActFrag","Entree SongHolder(LayoutInflater)");
             tableau_Etapes.sauv("S4HActivityFragment: entree SongHolder");
             itemView.setOnClickListener(this);
 
@@ -235,13 +238,15 @@ public class Songs4HeavenActivityFragment extends Fragment {
             Log.d("DEBUG_S4HActFrag","Entree SongAdapter(ArrayList<Song>");
             tableau_Etapes.sauv("S4HActivityFragment: entree SongAdapter");
             mLSong = ls;
+            Log.d("DEBUG_S4HActFrag","SongAdapter avec mLSong ayant "+mLSong.size()+ " elements");
+
         }
 
         @NonNull
         @Override
         public SongHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from( getActivity() );
-            Log.d("DEBUG_S4HActFrag","Entree SongAdapter onCreateViewHolder");
+            Log.d("DEBUG_S4HActFrag","Entree SongHolder onCreateViewHolder");
             tableau_Etapes.sauv("S4HActivityFragment: entree onCreateViewHolder");
 
             return new SongHolder( layoutInflater, parent );
@@ -361,6 +366,8 @@ public class Songs4HeavenActivityFragment extends Fragment {
                 } while(c.moveToNext());
             }
             //c.close();
+
+            Log.d("DEBUG_S4HActFrag","getSongs avec songList ayant: "+songList.size()+" elements");
 
             return songList;
 

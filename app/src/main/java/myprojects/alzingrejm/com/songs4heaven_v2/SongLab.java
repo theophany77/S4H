@@ -12,6 +12,8 @@ import java.util.List;
 
 import database.SongBaseHelper;
 import database.SongCursorWrapper;
+import database.SongDatabase;
+import database.SongDbSchema;
 import database.SongDbSchema.SongTable;
 
 import static database.SongDatabase.KIND;
@@ -35,6 +37,7 @@ public class SongLab {
     public static SongLab get(Context context) {
         Log.d("DEBUG_SongLab","entree public static SongLab");
         tableau_Etapes.sauv("SongLab: entree Songlag get(Context)");
+
         if (sSongLab == null) {
             Log.d("DEBUG_SongLab","sSongLab == null");
             sSongLab = new SongLab(context);
@@ -53,6 +56,15 @@ public class SongLab {
         mContext = context.getApplicationContext();
         mDatabase = new SongBaseHelper(mContext)
                 .getReadableDatabase();
+
+        // 20200425 : ne devrais-je pas initialiser ma table NAME aves les données XML ici ?
+        //  or je le fais à présent dans S4HActFrag.onCreateView.LoadSongsTask().getAllSongsCursor()
+        //  Essayons ici alors.
+
+        SongDatabase songDatabase = new SongDatabase(this.mContext);
+        //songDatabase.seedData(mDatabase);
+        Cursor cursor = songDatabase.getAllSongsCursor();
+        // 387 valeurs dans cursor. Oui mais où vont aller ces données sans return ?
 
     }
 
@@ -102,6 +114,7 @@ public class SongLab {
             cursor.moveToFirst();
 
             while (!cursor.isAfterLast()) {
+                Log.d("DEBUG_SongLab", "getSongs avant songs.add(cursor.getSong())");
                 songs.add(cursor.getSong());
                 cursor.moveToNext();
             }
@@ -109,11 +122,13 @@ public class SongLab {
         } finally {
             cursor.close();
         }
+
+        Log.d("DEBUG_SongLab", "getSongs avant return avec songs ayant "+songs.size()+" elements");
         return songs;
     }
 
     public Song getSong(int id) {
-        Log.d("DEBUG_SongLab","entree getSong(int id)");
+        Log.d("DEBUG_SongLab","entree getSong(int id) avec id:"+id);
         tableau_Etapes.sauv("SongLab: entree getSong");
 
             // ne retourne rien
@@ -127,12 +142,12 @@ public class SongLab {
 
         Log.d("DEBUG_SongLab","ID:"+id);
 
-        Log.d("DEBUG_SongLab","getSong(int):cursor:"+cursor.getColumnCount());
-        Log.d("DEBUG_SongLab","getSong(int):cursor:"+cursor.getCount());
+        Log.d("DEBUG_SongLab","getSong(int):cursor.getColumnCount():"+cursor.getColumnCount());
+        Log.d("DEBUG_SongLab","getSong(int):cursor.getCount():"+cursor.getCount());
 
         try {
             if (cursor.getCount() == 0) {
-                Log.d("DEBUG_SongLab","getSong(int):dans le try avec == 0");
+                   Log.d("DEBUG_SongLab","getSong(int):dans le try avec == 0");
                 return null;
             }
             Log.d("DEBUG_SongLab","getSong(int):dans le try avec <> 0");
@@ -166,6 +181,23 @@ public class SongLab {
 
         Log.d("DEBUG_SongLab", "querySongs avec contrôle dans sqlite_master pour monSql :" + monSql);
 
+        Cursor cursor_ctrl = mDatabase.rawQuery("SELECT * FROM  "+ SongDbSchema.SongTable.NAME, null);
+
+        try{
+            if (cursor_ctrl != null) {
+                Log.d("DEBUG_SongLab", "querySongs avec contrôle dans sqlite_master pour cursor_ctrl NOT NULL");
+
+                while (cursor_ctrl.moveToNext()) {
+                    i += 1;
+                }
+
+                Log.d("DEBUG_SongLab", "querySongs avec contrôle dans sqlite_master pour cursor_ctrl  :" + i + "ligne(s)");
+
+            }
+        } finally {
+            cursor_ctrl.close();
+        }
+
         Cursor cursor_v = mDatabase.rawQuery(monSql, null);
 
         try{
@@ -191,7 +223,7 @@ public class SongLab {
 
         try{
         if (cursor3 != null) {
-            Log.d("DEBUG_SongLab", "querySongs dans cursor != null");
+            Log.d("DEBUG_SongLab", "querySongs dans cursor3 != null");
             cursor3.moveToFirst();
             //strCount = cursor3.getString(cursor3.getColumnIndex("COUNT(*)"));
             //count = cursor3.getColumnCount();

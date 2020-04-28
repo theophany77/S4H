@@ -43,6 +43,8 @@ public class SongBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.i("DEBUG_SongBaseHelper","Entree onUpgrade");
+
     }
 }
 
